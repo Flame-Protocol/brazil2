@@ -135,6 +135,38 @@ footer{max-width:1100px;margin:0 auto;padding:3rem;text-align:center}
 .foot-note{font-size:11.5px;color:var(--text-m);letter-spacing:.06em;line-height:1.75}
 @media(max-width:900px){.sec-inner{grid-template-columns:1fr;gap:2rem}.fb-paths{grid-template-columns:1fr}.dl-grid{grid-template-columns:1fr}.fb-stats{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:640px){.nav{padding:.8rem 1.5rem}.nav-links{display:none}.hero,.wrap{padding:3rem 1.5rem}.dl-section,.exhibit-in,.footer{padding:2rem 1.5rem}.pipeline-step{grid-template-columns:30px 1fr auto}.ps-func{display:none}.fb-stats{grid-template-columns:1fr}.cd-note{display:none}}
+
+.sp-section{background:var(--navy);border-bottom:.5px solid rgba(196,160,64,.3);padding:4.5rem 3rem}
+.sp-inner{max-width:1100px;margin:0 auto}
+.sp-hdr{text-align:center;margin-bottom:3rem}
+.sp-eyebrow{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(196,160,64,.55);margin-bottom:1rem}
+.sp-title{font-family:var(--ff-d);font-size:clamp(1.8rem,3.5vw,2.9rem);font-weight:300;color:#ede8d8;margin-bottom:1.1rem;line-height:1.15}
+.sp-lead{font-size:16px;font-weight:300;color:rgba(237,232,216,.68);max-width:800px;margin:0 auto;line-height:1.78}
+.sp-arch{margin:0 0 2.75rem;border:.5px solid rgba(196,160,64,.3)}
+.sp-qp{background:rgba(196,160,64,.1);border-bottom:2px solid #c4a040;padding:1.4rem 1.75rem}
+.sp-qp-lbl{font-size:9.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#c4a040;margin-bottom:.4rem}
+.sp-qp-ent{font-family:var(--ff-d);font-size:1.55rem;font-weight:500;color:#ede8d8;margin-bottom:.35rem}
+.sp-qp-desc{font-size:13.5px;color:rgba(237,232,216,.6);line-height:1.65}
+.sp-arrow{padding:.55rem 1.75rem;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,160,64,.45);text-align:center;background:rgba(0,0,0,.18);border-bottom:.5px solid rgba(255,255,255,.05)}
+.sp-hier-hdr{font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(237,232,216,.28);padding:.65rem 1.75rem;border-bottom:.5px solid rgba(255,255,255,.05);background:rgba(0,0,0,.15)}
+.sp-row{display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:1rem;padding:.55rem 1.75rem;border-bottom:.5px solid rgba(255,255,255,.04);background:rgba(0,0,0,.12)}
+.sp-row:last-child{border-bottom:none}
+.sp-rk{font-family:var(--ff-d);font-size:1.15rem;font-weight:300;color:rgba(196,160,64,.28);text-align:center}
+.sp-rtxt{font-size:13.5px;color:rgba(237,232,216,.38)}
+.sp-out{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#c05040;background:rgba(192,80,64,.12);padding:.18rem .55rem;white-space:nowrap}
+.sp-combo-lbl{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(196,160,64,.5);margin-bottom:1.1rem}
+.sp-combo{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-bottom:2.25rem;border:.5px solid rgba(196,160,64,.18)}
+.sp-card{background:rgba(255,255,255,.03);padding:1.3rem 1.4rem;border:.5px solid rgba(196,160,64,.08);transition:background .2s}
+.sp-card-num{font-family:'Courier New',monospace;font-size:9.5px;font-weight:500;letter-spacing:.18em;color:#c4a040;margin-bottom:.45rem}
+.sp-card-title{font-family:var(--ff-d);font-size:1.1rem;font-weight:500;color:#ede8d8;margin-bottom:.4rem}
+.sp-card-text{font-size:13px;color:rgba(237,232,216,.55);line-height:1.68;font-weight:300}
+.sp-stmt{border:.5px solid rgba(196,160,64,.22);padding:1.6rem 1.75rem;background:rgba(196,160,64,.04)}
+.sp-stmt-lbl{font-size:9.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(196,160,64,.55);margin-bottom:.65rem}
+.sp-stmt-txt{font-size:15px;color:rgba(237,232,216,.72);line-height:1.78;font-weight:300}
+.sp-stmt-txt strong{color:#c4a040;font-weight:400}
+@media(max-width:900px){.sp-combo{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.sp-section{padding:3rem 1.5rem}.sp-combo{grid-template-columns:1fr}}
+
 @media print{
 /* ── Hide screen-only chrome ── */
 .cd-bar,.nav,.dl-section,.lang-toggle,.dl-btn{display:none!important}
@@ -249,7 +281,7 @@ footer{padding:2rem 2.2rem}
 <div class="cd-bar">
   <span class="cd-label" id="cd-label">New York Operative Date · June 3, 2026</span>
   <span class="cd-timer" id="cd-timer">—</span>
-  <span class="cd-note" id="cd-note">UCC Article 12 crystallization — DTC jurisdiction operative</span>
+  <span class="cd-note" id="cd-note">UCC Article 12 — New York operative date</span>
 </div>
 
 <nav class="nav">
@@ -278,6 +310,71 @@ footer{padding:2rem 2.2rem}
   <div class="hero-rule"></div>
   <div class="hero-badge" data-en="Prepared: May 27, 2026 · Addressed to the Federative Republic of Brazil" data-pt="Preparado: 27 de maio de 2026 · Endereçado à República Federativa do Brasil">Prepared: May 27, 2026 · Addressed to the Federative Republic of Brazil</div>
 </header>
+
+<section class="sp-section">
+<div class="sp-inner">
+  <div class="sp-hdr">
+    <div class="sp-eyebrow" data-en="UCC §12-104 · §12-105 · The Combination That Has Never Existed Before" data-pt="UCC §12-104 · §12-105 · A Combinação Que Nunca Existiu Antes">UCC §12-104 · §12-105 · The Combination That Has Never Existed Before</div>
+    <div class="sp-title" data-en="Super Priority and the Unprecedented Combination" data-pt="Super Prioridade e a Combinação Sem Precedentes">Super Priority and the Unprecedented Combination</div>
+    <p class="sp-lead" data-en="This is not a priority rule. It is an extinguishment rule. The BCB does not compete for priority position against prior creditors — it takes the asset entirely free of all prior property claims. Those claims do not become junior. They cease to exist. No instrument in the history of US commercial law has assembled this combination in a single perfected, live, transferable Controllable Electronic Record." data-pt="Esta não é uma regra de prioridade. É uma regra de extinção. O BCB não compete por posição de prioridade contra credores anteriores — adquire o ativo completamente livre de todas as reivindicações de propriedade anteriores. Essas reivindicações não se tornam subordinadas. Elas deixam de existir. Nenhum instrumento na história do direito comercial americano reuniu esta combinação em um único Registro Eletrônico Controlável perfeiçoado, ativo e transferível.">This is not a priority rule. It is an extinguishment rule. The BCB does not compete for priority position against prior creditors — it takes the asset entirely free of all prior property claims. Those claims do not become junior. They cease to exist. No instrument in the history of US commercial law has assembled this combination in a single perfected, live, transferable Controllable Electronic Record.</p>
+  </div>
+
+  <div class="sp-arch">
+    <div class="sp-qp">
+      <div class="sp-qp-lbl" data-en="Qualifying Purchaser — UCC §12-104 — Operates Above the Entire Priority Hierarchy" data-pt="Comprador Qualificado — UCC §12-104 — Opera Acima de Toda a Hierarquia de Prioridade">Qualifying Purchaser — UCC §12-104 — Operates Above the Entire Priority Hierarchy</div>
+      <div class="sp-qp-ent" data-en="BCB — After Accepting This Transfer — First Central Bank in the World" data-pt="BCB — Após Aceitar Esta Transferência — Primeiro Banco Central do Mundo">BCB — After Accepting This Transfer — First Central Bank in the World</div>
+      <p class="sp-qp-desc" data-en="Takes the Controllable Electronic Record free of any claim of a property right (§12-104(e)). Exclusive control under §12-105 — all three prongs — established simultaneously by operation of law at the moment of vault-to-vault transfer. No filing. No registration. No court order required." data-pt="Adquire o Registro Eletrônico Controlável livre de qualquer reivindicação de direito de propriedade (§12-104(e)). Controle exclusivo sob §12-105 — todos os três requisitos — estabelecido simultaneamente por operação de lei no momento da transferência de cofre a cofre. Sem registro. Sem ordem judicial.">Takes the Controllable Electronic Record free of any claim of a property right (§12-104(e)). Exclusive control under §12-105 — all three prongs — established simultaneously by operation of law at the moment of vault-to-vault transfer. No filing. No registration. No court order required.</p>
+    </div>
+    <div class="sp-arrow" data-en="↕  Extinguishment — not subordination — not priority — the prior claims cease to exist  ↕" data-pt="↕  Extinção — não subordinação — não prioridade — as reivindicações anteriores deixam de existir  ↕">↕  Extinguishment — not subordination — not priority — the prior claims cease to exist  ↕</div>
+    <div class="sp-hier-hdr" data-en="Traditional Priority Hierarchy — Rendered Inoperative Upon Qualifying Purchaser Transfer" data-pt="Hierarquia Tradicional de Prioridade — Tornada Inoperante Após Transferência ao Comprador Qualificado">Traditional Priority Hierarchy — Rendered Inoperative Upon Qualifying Purchaser Transfer</div>
+    <div class="sp-row"><span class="sp-rk">1</span><span class="sp-rtxt" data-en="Perfected Secured Creditor — previously held first-priority security interest" data-pt="Credor Garantido Perfeiçoado — detinha interesse de garantia de primeira prioridade">Perfected Secured Creditor — previously held first-priority security interest</span><span class="sp-out" data-en="Extinguished" data-pt="Extinto">Extinguished</span></div>
+    <div class="sp-row"><span class="sp-rk">2</span><span class="sp-rtxt" data-en="Lien Creditor — judgment lien, tax lien, or statutory lien" data-pt="Credor com Penhor — penhor judicial, fiscal ou estatutário">Lien Creditor — judgment lien, tax lien, or statutory lien</span><span class="sp-out" data-en="Extinguished" data-pt="Extinto">Extinguished</span></div>
+    <div class="sp-row"><span class="sp-rk">3</span><span class="sp-rtxt" data-en="Unperfected Security Interest — subordinated under Article 9" data-pt="Interesse de Garantia Não Perfeiçoado — subordinado sob o Artigo 9">Unperfected Security Interest — subordinated under Article 9</span><span class="sp-out" data-en="Extinguished" data-pt="Extinto">Extinguished</span></div>
+    <div class="sp-row"><span class="sp-rk">4</span><span class="sp-rtxt" data-en="Prior Purchaser Without Control — any purchaser who did not obtain §12-105 control" data-pt="Comprador Anterior Sem Controle — qualquer comprador que não obteve controle §12-105">Prior Purchaser Without Control — any purchaser who did not obtain §12-105 control</span><span class="sp-out" data-en="Extinguished" data-pt="Extinto">Extinguished</span></div>
+    <div class="sp-row"><span class="sp-rk">5</span><span class="sp-rtxt" data-en="Foreign Judgment Creditor — attempting attachment under recognition proceeding" data-pt="Credor de Sentença Estrangeira — tentando penhora em processo de reconhecimento">Foreign Judgment Creditor — attempting attachment under recognition proceeding</span><span class="sp-out" data-en="Extinguished" data-pt="Extinto">Extinguished</span></div>
+    <div class="sp-row"><span class="sp-rk">6</span><span class="sp-rtxt" data-en="Bankruptcy Trustee — asserting avoidance powers against the transferor" data-pt="Administrador de Falência — exercendo poderes de anulação contra o transferidor">Bankruptcy Trustee — asserting avoidance powers against the transferor</span><span class="sp-out" data-en="Extinguished" data-pt="Extinto">Extinguished</span></div>
+  </div>
+
+  <div class="sp-combo-lbl" data-en="The Unprecedented Combination — Six Elements Never Before Assembled in a Single Instrument" data-pt="A Combinação Sem Precedentes — Seis Elementos Nunca Antes Reunidos em um Único Instrumento">The Unprecedented Combination — Six Elements Never Before Assembled in a Single Instrument</div>
+  <div class="sp-combo">
+    <div class="sp-card">
+      <div class="sp-card-num">§12-104 · Extinguishment</div>
+      <div class="sp-card-title" data-en="Statutory Prior-Claim Extinguishment" data-pt="Extinção Estatutária de Reivindicações Anteriores">Statutory Prior-Claim Extinguishment</div>
+      <p class="sp-card-text" data-en="Not a priority rule — an extinguishment rule. Prior property claims do not become junior to the qualifying purchaser. They cease to exist entirely by operation of state law. This is the holder-in-due-course doctrine applied to digital assets — and no other central bank has accessed it." data-pt="Não é uma regra de prioridade — é uma regra de extinção. Reivindicações de propriedade anteriores não se tornam subordinadas ao comprador qualificado. Elas deixam de existir inteiramente por operação da lei estadual.">Not a priority rule — an extinguishment rule. Prior property claims do not become junior. They cease to exist by operation of state law. The holder-in-due-course doctrine applied to digital assets — and no other central bank has accessed it.</p>
+    </div>
+    <div class="sp-card">
+      <div class="sp-card-num">§12-105 · Binary Control</div>
+      <div class="sp-card-title" data-en="Absolute Exclusive Control" data-pt="Controle Exclusivo Absoluto">Absolute Exclusive Control</div>
+      <p class="sp-card-text" data-en="Control under §12-105 is binary — you either satisfy all three prongs simultaneously (benefit, exclusive prevention, exclusive transfer) or you have zero control. No partial control. No subordinated control. No impaired control. The moment the CER arrives in the BCB's vault, all three prongs are satisfied by operation of law." data-pt="O controle sob §12-105 é binário — você satisfaz todos os três requisitos simultaneamente (benefício, prevenção exclusiva, transferência exclusiva) ou não tem controle algum. Sem controle parcial. Sem controle subordinado. No momento em que o CER chega ao cofre do BCB, os três requisitos são satisfeitos por operação de lei.">Control under §12-105 is binary — all three prongs simultaneously (benefit, exclusive prevention, exclusive transfer) or zero control. No partial. No subordinated. No impaired. The moment the CER arrives in the BCB's vault, all three prongs are satisfied by operation of law.</p>
+    </div>
+    <div class="sp-card">
+      <div class="sp-card-num">Savvy → Fireblocks · 2-Step</div>
+      <div class="sp-card-title" data-en="Atomic Settlement — Final in Seconds" data-pt="Liquidação Atômica — Final em Segundos">Atomic Settlement — Final in Seconds</div>
+      <p class="sp-card-text" data-en="Simultaneous, indivisible delivery and payment in a single execution instruction. Savvy initiates. Fireblocks Trust Company executes. No correspondent banking chain. No clearinghouse. No T+2 delay. No stablecoin conversion. Settlement finality is statutory — not a software promise, not an operational guarantee — state law." data-pt="Entrega e pagamento simultâneos e indivisíveis em uma única instrução de execução. Savvy inicia. Fireblocks Trust Company executa. Sem cadeia de bancos correspondentes. Sem câmara de compensação. Sem atraso T+2. A finalidade da liquidação é estatutária — não uma promessa de software — lei estadual.">Simultaneous, indivisible delivery and payment. Savvy initiates. Fireblocks Trust Company executes. No correspondent banking. No clearinghouse. No T+2. Settlement finality is statutory — not a software promise — state law.</p>
+    </div>
+    <div class="sp-card">
+      <div class="sp-card-num">NYDFS · USD 5T Volume</div>
+      <div class="sp-card-title" data-en="NYDFS-Regulated Institutional Custody" data-pt="Custódia Institucional Regulada pela NYDFS">NYDFS-Regulated Institutional Custody</div>
+      <p class="sp-card-text" data-en="Fireblocks Trust Company is regulated by the New York Department of Financial Services — the same regulator that supervises the largest banks in the United States. USD 5 Trillion in annual transfer volume. MPC multi-party computation custody. The same infrastructure deployed by BNY Mellon and Braza Bank. Not a startup. Not a pilot. Operational at scale." data-pt="Fireblocks Trust Company é regulada pelo Departamento de Serviços Financeiros de Nova York — o mesmo regulador que supervisiona os maiores bancos dos EUA. USD 5 Trilhões em volume anual de transferências. Custódia MPC de computação multipartidária. A mesma infraestrutura do BNY Mellon e Braza Bank.">Fireblocks Trust Company — New York Department of Financial Services regulated. USD 5 Trillion annual transfer volume. MPC custody. BNY Mellon and Braza Bank infrastructure. Not a pilot. Operational at institutional scale.</p>
+    </div>
+    <div class="sp-card">
+      <div class="sp-card-num">Ethereum Mainnet · ETR Genesis</div>
+      <div class="sp-card-title" data-en="On-Chain Verifiable — Immutable Ledger" data-pt="Verificável On-Chain — Livro-Razão Imutável">On-Chain Verifiable — Immutable Ledger</div>
+      <p class="sp-card-text" data-en="Every position, every transfer, every proof of claim is independently verifiable on Ethereum Mainnet. The Electronic Trust Registry is immutable at Genesis Block 23,878,199 — October 15, 2025. Five vault positions. Eight collateral backing claims. One transfer transaction. All verifiable at the contract addresses in this white paper. No counterparty controls the ledger." data-pt="Cada posição, cada transferência, cada prova de reivindicação é verificável de forma independente na Rede Principal Ethereum. O Registro Eletrônico de Confiança é imutável no Bloco Gênese 23.878.199. Cinco posições de cofre. Oito reivindicações de garantia. Tudo verificável nos endereços de contratos neste livro branco.">Every position, transfer, and proof of claim independently verifiable on Ethereum Mainnet. ETR immutable at Genesis Block 23,878,199. Five vault positions. Eight collateral claims. All verifiable at the contract addresses in this white paper.</p>
+    </div>
+    <div class="sp-card">
+      <div class="sp-card-num">Treaty Framework · Sovereign Register</div>
+      <div class="sp-card-title" data-en="Treaty-Backed Sovereign Standing" data-pt="Legitimidade Soberana Respaldada por Tratado">Treaty-Backed Sovereign Standing</div>
+      <p class="sp-card-text" data-en="The Treaty framework establishes the sovereign standing required. This transaction cannot be entered in an individual or purely commercial capacity — the standing must match the register. This combination of legal extinguishment, custody, and standing is not replicable through any commercial instrument, any CBDC pilot, or any conventional wire transfer mechanism currently available to any other central bank." data-pt="O arcabouço do Tratado estabelece a legitimidade soberana exigida. Esta transação não pode ser realizada em capacidade individual ou puramente comercial. Esta combinação de extinção jurídica, custódia e legitimidade não é replicável por nenhum instrumento comercial, piloto CBDC ou mecanismo convencional disponível para qualquer outro banco central.">The Treaty framework establishes the sovereign standing required. This transaction cannot be entered in a commercial capacity. This combination is not replicable through any CBDC pilot, commercial instrument, or wire transfer mechanism available to any other central bank.</p>
+    </div>
+  </div>
+
+  <div class="sp-stmt">
+    <div class="sp-stmt-lbl" data-en="Why This Has Never Been Done Before — The Complete Assessment" data-pt="Por Que Isso Nunca Foi Feito Antes — A Avaliação Completa">Why This Has Never Been Done Before — The Complete Assessment</div>
+    <p class="sp-stmt-txt" data-en="Each element of this framework exists independently in other legal or financial contexts. <strong>Statutory extinguishment</strong> exists in negotiable instruments law — but not for digital assets. <strong>Institutional MPC custody</strong> exists at Fireblocks — but not combined with Article 12 perfected control. <strong>Atomic settlement</strong> is achievable in blockchain infrastructure — but not with NYDFS-regulated custody and sovereign standing simultaneously. <strong>Treaty-backed sovereign transfers</strong> exist in international finance — but not with on-chain verifiable, bytecode-immutable CER positions. The FLAME Protocol is the first framework to assemble all six in a single perfected Controllable Electronic Record — with a live five-vault position totaling Forty-One Trillion Seven Hundred Twenty-Nine Billion Nine Hundred Ninety-Nine Million Eight Hundred Seventy-Two Thousand Five Hundred and Zero Cents (41,929,999,872,500.00USD) plus Five Hundred Seventy-Two Billion Three Hundred Thirty-Three Million Three Hundred Thirty-Three Thousand Three Hundred Forty and Zero Cents (572,333,333,340.00EUR) — verifiable on Ethereum Mainnet today, seven months before the New York operative date." data-pt="Cada elemento deste arcabouço existe independentemente em outros contextos jurídicos ou financeiros. <strong>A extinção estatutária</strong> existe no direito dos instrumentos negociáveis — mas não para ativos digitais. <strong>A custódia institucional MPC</strong> existe no Fireblocks — mas não combinada com controle perfeiçoado do Artigo 12. <strong>A liquidação atômica</strong> é alcançável em infraestrutura blockchain — mas não com custódia regulada pela NYDFS e legitimidade soberana simultaneamente. O FLAME Protocol é o primeiro arcabouço a reunir todos os seis em um único Registro Eletrônico Controlável perfeiçoado — com uma posição ativa de cinco cofres verificável na Rede Principal Ethereum hoje, sete meses antes da data operacional de Nova York.">Each element exists independently in other contexts. <strong>Statutory extinguishment</strong> exists in negotiable instruments law — but not for digital assets. <strong>Institutional MPC custody</strong> exists at Fireblocks — but not combined with Article 12 perfected control. <strong>Atomic settlement</strong> is achievable in blockchain infrastructure — but not with NYDFS-regulated custody and sovereign standing simultaneously. <strong>Treaty-backed sovereign transfers</strong> exist in international finance — but not with on-chain verifiable, bytecode-immutable CER positions. The FLAME Protocol is the first framework to assemble all six in a single perfected Controllable Electronic Record — with a live five-vault position totaling Forty-One Trillion Seven Hundred Twenty-Nine Billion Nine Hundred Ninety-Nine Million Eight Hundred Seventy-Two Thousand Five Hundred and Zero Cents (41,929,999,872,500.00USD) plus Five Hundred Seventy-Two Billion Three Hundred Thirty-Three Million Three Hundred Thirty-Three Thousand Three Hundred Forty and Zero Cents (572,333,333,340.00EUR) — verifiable on Ethereum Mainnet today.</p>
+  </div>
+</div>
+</section>
 
 <section class="dl-section">
   <div class="dl-inner">
@@ -344,13 +441,13 @@ footer{padding:2rem 2.2rem}
             <tr><td data-en="Settlement Ledger Operator" data-pt="Operador do Livro-Razão">Settlement Ledger Operator</td><td data-en="Equisource Group, LLC — Flame CER Electronic Trust Registry · 30 N Gould St Suite R, Sheridan, Wyoming 82801" data-pt="Equisource Group, LLC — Registro Eletrônico de Confiança CER Flame · 30 N Gould St Suite R, Sheridan, Wyoming 82801">Equisource Group, LLC — Flame CER Electronic Trust Registry · 30 N Gould St Suite R, Sheridan, Wyoming 82801</td></tr>
             <tr><td data-en="Issuer and Tribal Government Entity" data-pt="Emitente e Entidade Governamental Tribal">Issuer and Tribal Government Entity</td><td data-en="Thoroughbred LLC — California — Successors: The Treaty with the Delawares 1778" data-pt="Thoroughbred LLC — Califórnia — Sucessores: O Tratado com os Delawares de 1778">Thoroughbred LLC — California — Successors: The Treaty with the Delawares 1778</td></tr>
             <tr><td data-en="Trust Protector" data-pt="Trust Protector">Trust Protector</td><td data-en="GB Dynamics, Inc. — Jonathan Granger, Chief Executive Officer — Humanitarian Program Chief Executor" data-pt="GB Dynamics, Inc. — Jonathan Granger, Diretor Executivo — Executor-Chefe do Programa Humanitário">GB Dynamics, Inc. — Jonathan Granger, Chief Executive Officer — Humanitarian Program Chief Executor</td></tr>
-            <tr><td data-en="Custodian" data-pt="Custodiante">Custodian</td><td data-en="Black Pearl Investments I, LLC — Christopher McGregor — Fireblocks Vault" data-pt="Black Pearl Investments I, LLC — Christopher McGregor — Fireblocks Vault">Black Pearl Investments I, LLC — Christopher McGregor — Fireblocks Vault</td></tr>
+  
           </table>
         </div></div>
 
         <div class="pt"><div class="pt-bar"></div><div>
           <div class="pt-lbl" data-en="June 3, 2026 — New York Operative Date" data-pt="3 de junho de 2026 — Data Operacional de Nova York">June 3, 2026 — New York Operative Date</div>
-          <p class="pt-txt" data-en="The UCC Article 12 control framework is binary: a party either satisfies all three prongs of §12-105 — (A) benefit, (B) exclusive prevention, (C) exclusive transfer — or holds zero control. No intermediate position exists under the statute. Perfected control was established at ETR genesis, October 15, 2025. June 3, 2026 is the crystallization date on which that extinguishment becomes operative under New York law for all DTC-registered instruments and all instruments governed by New York jurisdiction, including cross-border instruments subject to SEC oversight." data-pt="O regime de controle do Artigo 12 da UCC é binário: uma parte satisfaz todos os três requisitos do §12-105 — (A) benefício, (B) prevenção exclusiva, (C) transferência exclusiva — ou não possui nenhum controle. Nenhuma posição intermediária existe no estatuto. O controle perfeiçoado foi estabelecido na gênese do ETR, em 15 de outubro de 2025. 3 de junho de 2026 é a data de cristalização na qual essa extinção se torna operacional sob a lei de Nova York para todos os instrumentos registrados na DTC e todos os instrumentos regidos pela jurisdição de Nova York.">The UCC Article 12 control framework is binary: a party either satisfies all three prongs of §12-105 — (A) benefit, (B) exclusive prevention, (C) exclusive transfer — or holds zero control. No intermediate position exists under the statute. Perfected control was established at ETR genesis, October 15, 2025. June 3, 2026 is the crystallization date on which that extinguishment becomes operative under New York law for all DTC-registered instruments and all instruments governed by New York jurisdiction.</p>
+          <p class="pt-txt" data-en="The UCC Article 12 control framework is binary: a party either satisfies all three prongs of §12-105 — (A) benefit, (B) exclusive prevention, (C) exclusive transfer — or holds zero control. No intermediate position exists under the statute. Perfected control was established at ETR genesis, October 15, 2025. June 3, 2026 is the crystallization date on which that extinguishment becomes operative under New York law for all instruments governed by New York jurisdiction, including cross-border instruments subject to SEC oversight." data-pt="O regime de controle do Artigo 12 da UCC é binário: uma parte satisfaz todos os três requisitos do §12-105 — (A) benefício, (B) prevenção exclusiva, (C) transferência exclusiva — ou não possui nenhum controle. Nenhuma posição intermediária existe no estatuto. O controle perfeiçoado foi estabelecido na gênese do ETR, em 15 de outubro de 2025. 3 de junho de 2026 é a data de cristalização na qual essa extinção se torna operacional sob a lei de Nova York para todos os instrumentos regidos pela jurisdição de Nova York.">The UCC Article 12 control framework is binary: a party either satisfies all three prongs of §12-105 — (A) benefit, (B) exclusive prevention, (C) exclusive transfer — or holds zero control. No intermediate position exists under the statute. Perfected control was established at ETR genesis, October 15, 2025. June 3, 2026 is the crystallization date on which that extinguishment becomes operative under New York law for all instruments governed by New York jurisdiction.</p>
         </div></div>
 
         <div class="pt"><div class="pt-bar"></div><div>
@@ -558,7 +655,7 @@ footer{padding:2rem 2.2rem}
     <div class="id-cell full"><div class="id-lbl" data-en="Electronic Trust Registry (ETR) — Governing Instrument" data-pt="Registro Eletrônico de Confiança (ETR) — Instrumento Regulador">Electronic Trust Registry (ETR) — Governing Instrument</div><div class="id-val">0xCC8598B02BB753b0A557811a99622b33C73692cF</div></div>
     <div class="id-cell full"><div class="id-lbl" data-en="Settlement Proxy" data-pt="Proxy de Liquidação">Settlement Proxy</div><div class="id-val">0x16ddD72514e05603c6c044513E382Dd4DCD42d71</div></div>
     <div class="id-cell full"><div class="id-lbl" data-en="Article 12 Forced Transfer" data-pt="Transferência Forçada — Artigo 12">Article 12 Forced Transfer</div><div class="id-val">0x332daD374FBc2d8419444363cdbF5f0140907bB7</div></div>
-    <div class="id-cell full"><div class="id-lbl" data-en="Vault A — Custody Account (Black Pearl Investments I, LLC)" data-pt="Cofre A — Conta de Custódia (Black Pearl Investments I, LLC)">Vault A — Custody Account (Black Pearl Investments I, LLC)</div><div class="id-val">0xA170dE937DC784422369e58e2e64E232c326a218</div></div>
+    <div class="id-cell full"><div class="id-lbl" data-en="Vault A — Primary Custody Account — FLAMEC" data-pt="Cofre A — Conta de Custódia Principal — FLAMEC">Vault A — Primary Custody Account — FLAMEC</div><div class="id-val">0xA170dE937DC784422369e58e2e64E232c326a218</div></div>
     <div class="id-cell full"><div class="id-lbl" data-en="Vault B — Savvy (aUSDT Active Settlement)" data-pt="Cofre B — Savvy (Liquidação Ativa aUSDT)">Vault B — Savvy (aUSDT Active Settlement)</div><div class="id-val">0xf46DD8C5d4f574Ba5a85FEd04Fa42bf450E8d4Ab</div></div>
     <div class="id-cell full"><div class="id-lbl" data-en="Vault C — Fireblocks V1 (aUSDT Verification)" data-pt="Cofre C — Fireblocks V1 (Verificação aUSDT)">Vault C — Fireblocks V1 (aUSDT Verification)</div><div class="id-val">0x31480428089FB8D4242035d5FD682D621164d062</div></div>
     <div class="id-cell full"><div class="id-lbl" data-en="Vault D — Fireblocks V2 Production" data-pt="Cofre D — Fireblocks V2 Produção">Vault D — Fireblocks V2 Production</div><div class="id-val">0x18c7116FC54A0823567D25a663048bD568d150f1</div></div>
@@ -596,8 +693,8 @@ function setLang(l){
     ?'Data Operacional de Nova York · 3 de junho de 2026'
     :'New York Operative Date · June 3, 2026';
   document.getElementById('cd-note').textContent=l==='pt'
-    ?'Cristalização UCC Artigo 12 — jurisdição DTC operacional'
-    :'UCC Article 12 crystallization — DTC jurisdiction operative';
+    ?'UCC Artigo 12 — data operacional de Nova York'
+    :'UCC Article 12 — New York operative date';
 }
 function updateCD(){
   var t=new Date('2026-06-03T00:00:00-04:00'),n=new Date(),d=t-n;
