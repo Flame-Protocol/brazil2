@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLAME Protocol — Sovereign Settlement Framework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;
+  --bg-s:#111720;
+  --bg-c:#161d28;
+  --gold:#c4a25a;
+  --gold-l:#dfc07e;
+  --gold-m:#8a7240;
+  --text:#ede8dc;
+  --text-s:#9a9082;
+  --text-m:#6a6358;
+  --border:rgba(196,162,90,.18);
+  --border-str:rgba(196,162,90,.45);
+  --ff-d:'Cormorant Garamond',Georgia,serif;
+  --ff-b:'Crimson Pro',Georgia,serif
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-b);font-size:17px;line-height:1.78;font-weight:300}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 3rem;background:rgba(13,17,23,.96);border-bottom:.5px solid var(--border);backdrop-filter:blur(10px)}
+.nav-brand{font-family:var(--ff-d);font-size:14px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{font-family:var(--ff-b);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-s);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.lang-toggle{display:flex;border:.5px solid var(--border-str);border-radius:2px;overflow:hidden}
+.lang-btn{background:transparent;border:none;color:var(--text-s);font-family:var(--ff-b);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.32rem .8rem;cursor:pointer;transition:all .2s}
+.lang-btn.active{background:var(--gold);color:#0d1117}
+.lang-btn:hover:not(.active){color:var(--gold)}
+
+/* HERO */
+.hero{padding:7rem 3rem 5.5rem;text-align:center;position:relative;border-bottom:.5px solid var(--border)}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 45% at 50% 0%,rgba(196,162,90,.07) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{font-family:var(--ff-b);font-size:10.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:2.2rem}
+.hero-title{font-family:var(--ff-d);font-size:clamp(2.6rem,4.8vw,4.4rem);font-weight:300;line-height:1.08;color:var(--text);margin-bottom:1.5rem;letter-spacing:-.01em}
+.hero-title em{color:var(--gold-l);font-style:italic}
+.hero-sub{font-size:18px;font-weight:300;color:var(--text-s);max-width:700px;margin:0 auto 3rem;line-height:1.75}
+.hero-rule{width:55px;height:.5px;background:var(--gold);margin:0 auto 2.5rem;opacity:.55}
+.hero-badge{display:inline-block;border:.5px solid var(--border-str);padding:.38rem 1.25rem;font-family:var(--ff-b);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+
+/* SECTIONS */
+.section-wrap{max-width:1100px;margin:0 auto;padding:5rem 3rem;border-bottom:.5px solid var(--border)}
+.section-inner{display:grid;grid-template-columns:270px 1fr;gap:4.5rem;align-items:start}
+.sec-level{font-family:var(--ff-d);font-size:90px;font-weight:300;line-height:1;color:rgba(196,162,90,.12);margin-bottom:.75rem;letter-spacing:-.02em}
+.sec-label{font-family:var(--ff-b);font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-m);margin-bottom:.6rem}
+.sec-recipient{font-family:var(--ff-d);font-size:23px;font-weight:500;color:var(--gold);line-height:1.2;margin-bottom:.6rem}
+.sec-type{font-size:13px;color:var(--text-s);font-style:italic}
+.sec-heading{font-family:var(--ff-d);font-size:2.1rem;font-weight:400;color:var(--text);margin-bottom:1.2rem;line-height:1.18}
+.sec-lead{font-size:16.5px;font-weight:300;color:var(--text-s);margin-bottom:2.5rem;line-height:1.8;padding-bottom:2rem;border-bottom:.5px solid var(--border)}
+
+/* POINTS */
+.points{display:flex;flex-direction:column;gap:1.6rem}
+.point{display:grid;grid-template-columns:1px 1fr;gap:1.1rem;align-items:start}
+.pt-bar{background:var(--gold);opacity:.35;width:1px;min-height:22px;margin-top:7px}
+.pt-label{font-family:var(--ff-b);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.28rem}
+.pt-text{font-size:15.5px;font-weight:300;color:var(--text-s);line-height:1.75}
+.pt-text strong{color:var(--text);font-weight:400}
+
+/* RAIL GRID */
+.rail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;margin:2rem 0;border:.5px solid var(--border)}
+.rail-card{background:var(--bg-c);padding:1.2rem 1.3rem;border:.5px solid var(--border)}
+.rc-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-m);margin-bottom:.4rem}
+.rc-value{font-family:var(--ff-d);font-size:22px;font-weight:400;color:var(--text);line-height:1.15;margin-bottom:.2rem}
+.rc-sub{font-size:12px;color:var(--text-m)}
+
+/* PAYEES */
+.payees{display:flex;flex-direction:column;gap:1px;margin:1.5rem 0;border:.5px solid var(--border)}
+.payee{padding:1.2rem 1.5rem;background:var(--bg-c);display:grid;grid-template-columns:44px 1fr;gap:1.2rem;align-items:start}
+.pay-num{font-family:var(--ff-d);font-size:30px;font-weight:300;color:rgba(196,162,90,.22);line-height:1;padding-top:4px}
+.pay-name{font-family:var(--ff-d);font-size:18px;font-weight:500;color:var(--gold);margin-bottom:.25rem}
+.pay-details{font-size:12.5px;color:var(--text-s);font-family:'Courier New',monospace;line-height:1.65}
+
+/* ADDRESSES */
+.addresses{display:flex;flex-direction:column;gap:1px;margin-top:1.5rem}
+.addr-row{display:grid;grid-template-columns:220px 1fr;gap:1rem;padding:.75rem 1.1rem;background:var(--bg-c);border:.5px solid var(--border);align-items:center}
+.addr-label{font-size:10.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-m)}
+.addr-value{font-family:'Courier New',monospace;font-size:12.5px;color:var(--text);word-break:break-all}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:2.5rem 0;border:.5px solid var(--border)}
+.stat-block{background:var(--bg-c);text-align:center;padding:2rem 1.5rem}
+.stat-num{font-family:var(--ff-d);font-size:3.2rem;font-weight:300;color:var(--gold);line-height:1;margin-bottom:.5rem}
+.stat-label{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--text-s);line-height:1.5}
+
+/* DIVIDER */
+.gold-div{max-width:1100px;margin:0 auto;padding:0 3rem}
+.gold-div-line{height:.5px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.25}
+
+/* EXHIBIT */
+.exhibit-bg{background:var(--bg-s);border-top:.5px solid var(--border);border-bottom:.5px solid var(--border)}
+.exhibit-inner{max-width:1100px;margin:0 auto;padding:5rem 3rem}
+.exhibit-h{font-family:var(--ff-d);font-size:1.5rem;font-weight:400;color:var(--gold);margin-bottom:.4rem;letter-spacing:.04em}
+.exhibit-sub{font-size:11px;color:var(--text-m);letter-spacing:.12em;text-transform:uppercase;margin-bottom:2.5rem}
+.id-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;border:.5px solid var(--border)}
+.id-cell{padding:.9rem 1.2rem;background:var(--bg-c);border:.5px solid var(--border)}
+.id-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m);margin-bottom:.3rem}
+.id-value{font-family:'Courier New',monospace;font-size:13.5px;color:var(--text)}
+.id-cell.full{grid-column:1/-1}
+
+/* FOOTER */
+footer{max-width:1100px;margin:0 auto;padding:3.5rem 3rem;text-align:center}
+.foot-ents{font-family:var(--ff-d);font-size:16px;font-weight:400;color:var(--text-s);line-height:2}
+.foot-line{width:260px;height:.5px;background:var(--border);margin:1.5rem auto}
+.foot-note{font-size:12px;color:var(--text-m);letter-spacing:.06em;line-height:1.75}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav{padding:.9rem 1.5rem}
+  .nav-links{display:none}
+  .hero{padding:4rem 1.5rem 3rem}
+  .section-wrap{padding:3rem 1.5rem}
+  .section-inner{grid-template-columns:1fr;gap:2rem}
+  .rail-grid{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:1fr}
+  .addr-row{grid-template-columns:1fr}
+  .id-grid{grid-template-columns:1fr}
+  .exhibit-inner{padding:3rem 1.5rem}
+  footer{padding:2.5rem 1.5rem}
+}
+@media(max-width:480px){
+  .rail-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">FLAME Protocol</div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#s1" data-en="Central Bank" data-pt="Banco Central">Central Bank</a></li>
+      <li><a href="#s2" data-en="Banco do Brasil" data-pt="Banco do Brasil">Banco do Brasil</a></li>
+      <li><a href="#s3" data-en="Sovereign Entity" data-pt="Entidade Soberana">Sovereign Entity</a></li>
+      <li><a href="#exhibit" data-en="Identifiers" data-pt="Identificadores">Identifiers</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn" id="btn-pt" onclick="setLang('pt')">PT</button>
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <p class="hero-eyebrow" data-en="Sovereign Settlement Framework — Confidential Disclosure" data-pt="Estrutura de Liquidação Soberana — Divulgação Confidencial">Sovereign Settlement Framework — Confidential Disclosure</p>
+  <h1 class="hero-title">
+    FLAME Protocol<br>
+    <em data-en="Sovereign Settlement Framework" data-pt="Estrutura de Liquidação Soberana">Sovereign Settlement Framework</em>
+  </h1>
+  <p class="hero-sub" data-en="Presented to the Federative Republic of Brazil at sovereign register. This framework establishes standing, settlement mechanics, and allocation for a Ten Billion Commodity Unit position perfected under Uniform Commercial Code Article 12." data-pt="Apresentado à República Federativa do Brasil em registro soberano. Esta estrutura estabelece legitimidade, mecânica de liquidação e alocação para uma posição de Dez Bilhões de Unidades de Commodity perfeiçoada nos termos do Artigo 12 do Código Comercial Uniforme.">Presented to the Federative Republic of Brazil at sovereign register. This framework establishes standing, settlement mechanics, and allocation for a Ten Billion Commodity Unit position perfected under Uniform Commercial Code Article 12.</p>
+  <div class="hero-rule"></div>
+  <div class="hero-badge" data-en="Three Recipients — Central Bank &nbsp;·&nbsp; Banco do Brasil &nbsp;·&nbsp; Sovereign Entity" data-pt="Três Destinatários — Banco Central &nbsp;·&nbsp; Banco do Brasil &nbsp;·&nbsp; Entidade Soberana">Three Recipients — Central Bank &nbsp;·&nbsp; Banco do Brasil &nbsp;·&nbsp; Sovereign Entity</div>
+</header>
+
+<!-- ─────────────────────────────────────────── SECTION I — BCB -->
+<section id="s1">
+<div class="section-wrap">
+  <div class="section-inner">
+    <div>
+      <div class="sec-level">I</div>
+      <div class="sec-label" data-en="Level One Recipient" data-pt="Destinatário de Nível Um">Level One Recipient</div>
+      <div class="sec-recipient">Banco Central do Brasil</div>
+      <div class="sec-type" data-en="Regulatory Sovereign" data-pt="Soberano Regulatório">Regulatory Sovereign</div>
+    </div>
+    <div>
+      <h2 class="sec-heading" data-en="Regulatory Standing and Legal Framework" data-pt="Posição Regulatória e Estrutura Jurídica">Regulatory Standing and Legal Framework</h2>
+      <p class="sec-lead" data-en="This communication is presented to Banco Central do Brasil in its capacity as Regulatory Sovereign. The FLAME Protocol operates as a perfected Controllable Electronic Record framework under Uniform Commercial Code Article 12, with governing authority established under Wyoming Statutory Law. The legal framework was established prior to the New York Operative Date of June 3, 2026." data-pt="Esta comunicação é apresentada ao Banco Central do Brasil em sua qualidade de Soberano Regulatório. O FLAME Protocol opera como uma estrutura de Registro Eletrônico Controlável perfeiçoada nos termos do Artigo 12 do Código Comercial Uniforme, com autoridade reguladora estabelecida sob a Lei Estatutária de Wyoming. A estrutura jurídica foi estabelecida antes da Data Operacional de Nova York de 3 de junho de 2026.">This communication is presented to Banco Central do Brasil in its capacity as Regulatory Sovereign. The FLAME Protocol operates as a perfected Controllable Electronic Record framework under Uniform Commercial Code Article 12, with governing authority established under Wyoming Statutory Law. The legal framework was established prior to the New York Operative Date of June 3, 2026.</p>
+      <div class="points">
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Article 12 — Perfected Control" data-pt="Artigo 12 — Controle Perfeiçoado">Article 12 — Perfected Control</div>
+            <p class="pt-text" data-en="The Issuer established statutory control over <strong>Ten Billion (10,000,000,000) Commodity Units</strong> prior to the New York Operative Date of June 3, 2026. Control was perfected by right of first deployment — no competing interest could attach after genesis deployment of the Electronic Trust Registry." data-pt="O Emitente estabeleceu controle estatutário sobre <strong>Dez Bilhões (10.000.000.000) de Unidades de Commodity</strong> antes da Data Operacional de Nova York de 3 de junho de 2026. O controle foi perfeiçoado pelo direito de primeiro lançamento — nenhum interesse concorrente poderia se estabelecer após a implantação gênese do Registro Eletrônico de Confiança.">The Issuer established statutory control over <strong>Ten Billion (10,000,000,000) Commodity Units</strong> prior to the New York Operative Date of June 3, 2026. Control was perfected by right of first deployment — no competing interest could attach after genesis deployment of the Electronic Trust Registry.</p>
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Electronic Trust Registry — Deployed and Immutable" data-pt="Registro Eletrônico de Confiança — Implantado e Imutável">Electronic Trust Registry — Deployed and Immutable</div>
+            <p class="pt-text" data-en="The Electronic Trust Registry was deployed <strong>October 15, 2025</strong> at Genesis Block <strong>23,878,199</strong>. The deployed registry is immutable and constitutes the authoritative ledger of record under the Flame Vault Ledger. Address: <strong>0xCC8598B02BB753b0A557811a99622b33C73692cF</strong>" data-pt="O Registro Eletrônico de Confiança foi implantado em <strong>15 de outubro de 2025</strong> no Bloco Gênese <strong>23.878.199</strong>. O registro implantado é imutável e constitui o livro-razão autoritativo de registro no Flame Vault Ledger. Endereço: <strong>0xCC8598B02BB753b0A557811a99622b33C73692cF</strong>">The Electronic Trust Registry was deployed <strong>October 15, 2025</strong> at Genesis Block <strong>23,878,199</strong>. The deployed registry is immutable and constitutes the authoritative ledger of record under the Flame Vault Ledger. Address: <strong>0xCC8598B02BB753b0A557811a99622b33C73692cF</strong></p>
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Impossibility Standard — UCC §12-105" data-pt="Padrão de Impossibilidade — UCC §12-105">Impossibility Standard — UCC §12-105</div>
+            <p class="pt-text" data-en="No third-party institution could satisfy the UCC §12-105 control test prior to ETR genesis deployment. This establishes exclusive control by structural impossibility — not merely by priority, but by the architecture of the registry itself. The control position is therefore legally unimpeachable." data-pt="Nenhuma instituição terceira poderia satisfazer o teste de controle da UCC §12-105 antes da implantação gênese do Registro Eletrônico de Confiança. Isso estabelece controle exclusivo por impossibilidade estrutural — não apenas por prioridade, mas pela própria arquitetura do registro. A posição de controle é, portanto, juridicamente incontestável.">No third-party institution could satisfy the UCC §12-105 control test prior to ETR genesis deployment. This establishes exclusive control by structural impossibility — not merely by priority, but by the architecture of the registry itself. The control position is therefore legally unimpeachable.</p>
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Governing Instruments" data-pt="Instrumentos Reguladores">Governing Instruments</div>
+            <p class="pt-text" data-en="Wyoming Statutes <strong>§§34-29-101 through 34-29-105</strong> govern all settlement operations. Registered intellectual property: <strong>Copyright TXu 2-207-707</strong> (executed April 16, 2020; certified January 10, 2023) and <strong>Copyright TXu 2-347-364</strong>. CBP Recordation: <strong>COP 23-00067</strong>. Florida Apostille: <strong>No. 2014-148134</strong>." data-pt="Os Estatutos de Wyoming <strong>§§34-29-101 a 34-29-105</strong> regem todas as operações de liquidação. Propriedade intelectual registrada: <strong>Copyright TXu 2-207-707</strong> (executado em 16 de abril de 2020; certificado em 10 de janeiro de 2023) e <strong>Copyright TXu 2-347-364</strong>. Registro CBP: <strong>COP 23-00067</strong>. Apostila da Flórida: <strong>No. 2014-148134</strong>.">Wyoming Statutes <strong>§§34-29-101 through 34-29-105</strong> govern all settlement operations. Registered intellectual property: <strong>Copyright TXu 2-207-707</strong> (executed April 16, 2020; certified January 10, 2023) and <strong>Copyright TXu 2-347-364</strong>. CBP Recordation: <strong>COP 23-00067</strong>. Florida Apostille: <strong>No. 2014-148134</strong>.</p>
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Registered Securities Identifiers" data-pt="Identificadores de Valores Mobiliários Registrados">Registered Securities Identifiers</div>
+            <p class="pt-text" data-en="<strong>CUSIP: 85453P206</strong> &nbsp;/&nbsp; <strong>ISIN: US85453P2060</strong> — a full registered identifier stack consistent with a securities instrument. CIK: 0001750462 &nbsp;/&nbsp; Book Entry: 3002 &nbsp;/&nbsp; Account: 1124-911." data-pt="<strong>CUSIP: 85453P206</strong> &nbsp;/&nbsp; <strong>ISIN: US85453P2060</strong> — uma pilha completa de identificadores registrados compatível com um instrumento de valores mobiliários. CIK: 0001750462 &nbsp;/&nbsp; Livro de Registro: 3002 &nbsp;/&nbsp; Conta: 1124-911."><strong>CUSIP: 85453P206</strong> &nbsp;/&nbsp; <strong>ISIN: US85453P2060</strong> — a full registered identifier stack consistent with a securities instrument. CIK: 0001750462 &nbsp;/&nbsp; Book Entry: 3002 &nbsp;/&nbsp; Account: 1124-911.</p>
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Issuer of Record and Operator" data-pt="Emitente de Registro e Operador">Issuer of Record and Operator</div>
+            <p class="pt-text" data-en="<strong>Thoroughbred LLC</strong> (California) — Issuer and Direct Registration System Registrant. Settlement Ledger Operator: <strong>Equisource Group LLC</strong> (30 N Gould St Ste R, Sheridan, Wyoming 82801), operating on behalf of <strong>GB Dynamics Inc.</strong>, Beneficial Owner of Ten Billion Settlement Units." data-pt="<strong>Thoroughbred LLC</strong> (Califórnia) — Emitente e Registrante do Sistema de Registro Direto. Operador do Livro-Razão de Liquidação: <strong>Equisource Group LLC</strong> (30 N Gould St Ste R, Sheridan, Wyoming 82801), operando em nome de <strong>GB Dynamics Inc.</strong>, Proprietário Beneficiário de Dez Bilhões de Unidades de Liquidação."><strong>Thoroughbred LLC</strong> (California) — Issuer and Direct Registration System Registrant. Settlement Ledger Operator: <strong>Equisource Group LLC</strong> (30 N Gould St Ste R, Sheridan, Wyoming 82801), operating on behalf of <strong>GB Dynamics Inc.</strong>, Beneficial Owner of Ten Billion Settlement Units.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="gold-div"><div class="gold-div-line"></div></div>
+
+<!-- ─────────────────────────────────────────── SECTION II — BANCO DO BRASIL -->
+<section id="s2">
+<div class="section-wrap">
+  <div class="section-inner">
+    <div>
+      <div class="sec-level">II</div>
+      <div class="sec-label" data-en="Level Two Recipient" data-pt="Destinatário de Nível Dois">Level Two Recipient</div>
+      <div class="sec-recipient">Banco do Brasil</div>
+      <div class="sec-type" data-en="State-Owned Commercial Sovereign" data-pt="Soberano Comercial de Propriedade Estatal">State-Owned Commercial Sovereign</div>
+    </div>
+    <div>
+      <h2 class="sec-heading" data-en="Settlement Mechanics and Payment Infrastructure" data-pt="Mecânica de Liquidação e Infraestrutura de Pagamento">Settlement Mechanics and Payment Infrastructure</h2>
+      <p class="sec-lead" data-en="This communication is presented to Banco do Brasil in its capacity as State-Owned Commercial Sovereign. The following outlines the settlement pipeline, payment rails, and custody infrastructure through which the FLAME Protocol executes transactions. The pipeline operated December 2025 through January 2026." data-pt="Esta comunicação é apresentada ao Banco do Brasil em sua qualidade de Soberano Comercial de Propriedade Estatal. A seguir, são apresentados o pipeline de liquidação, os trilhos de pagamento e a infraestrutura de custódia por meio dos quais o FLAME Protocol executa transações. O pipeline operou de dezembro de 2025 a janeiro de 2026.">This communication is presented to Banco do Brasil in its capacity as State-Owned Commercial Sovereign. The following outlines the settlement pipeline, payment rails, and custody infrastructure through which the FLAME Protocol executes transactions. The pipeline operated December 2025 through January 2026.</p>
+
+      <div class="rail-grid">
+        <div class="rail-card">
+          <div class="rc-label" data-en="Payment Rail" data-pt="Trilho de Pagamento">Payment Rail</div>
+          <div class="rc-value" data-en="Federal Reserve" data-pt="Federal Reserve">Federal Reserve</div>
+          <div class="rc-sub" data-en="Fedwire — Same-Day Finality" data-pt="Fedwire — Finalidade no Mesmo Dia">Fedwire — Same-Day Finality</div>
+        </div>
+        <div class="rail-card">
+          <div class="rc-label" data-en="Custody Infrastructure" data-pt="Infraestrutura de Custódia">Custody Infrastructure</div>
+          <div class="rc-value">Fireblocks</div>
+          <div class="rc-sub" data-en="BNY Mellon · Braza Bank Tier" data-pt="Nível BNY Mellon · Braza Bank">BNY Mellon · Braza Bank Tier</div>
+        </div>
+        <div class="rail-card">
+          <div class="rc-label" data-en="Commodity Units on Deposit" data-pt="Unidades de Commodity em Depósito">Commodity Units on Deposit</div>
+          <div class="rc-value">10,000,000,000</div>
+          <div class="rc-sub" data-en="Custody Account — Fireblocks Vault" data-pt="Conta de Custódia — Fireblocks Vault">Custody Account — Fireblocks Vault</div>
+        </div>
+        <div class="rail-card">
+          <div class="rc-label" data-en="Per Unit Valuation" data-pt="Valoração Por Unidade">Per Unit Valuation</div>
+          <div class="rc-value">4,173.00 USD</div>
+          <div class="rc-sub" data-en="Gold Spot Rate at Genesis — Bytecode-Derived" data-pt="Taxa Spot do Ouro na Gênese — Derivada do Bytecode">Gold Spot Rate at Genesis — Bytecode-Derived</div>
+        </div>
+        <div class="rail-card">
+          <div class="rc-label" data-en="Settlement Allocation" data-pt="Alocação de Liquidação">Settlement Allocation</div>
+          <div class="rc-value">60 / 40</div>
+          <div class="rc-sub" data-en="Structured and Documented" data-pt="Estruturada e Documentada">Structured and Documented</div>
+        </div>
+        <div class="rail-card">
+          <div class="rc-label" data-en="Operator Fee" data-pt="Taxa do Operador">Operator Fee</div>
+          <div class="rc-value">30%</div>
+          <div class="rc-sub">Equisource Group LLC</div>
+        </div>
+      </div>
+
+      <div class="pt-label" style="margin:2rem 0 1rem" data-en="Three Authorized Payees" data-pt="Três Beneficiários Autorizados">Three Authorized Payees</div>
+      <div class="payees">
+        <div class="payee">
+          <div class="pay-num">01</div>
+          <div>
+            <div class="pay-name">ORDIAMEX International S.A.</div>
+            <div class="pay-details">UBA Bank Guinea &nbsp;·&nbsp; SWIFT: UBAGGNCN<br>Correspondent: Citibank New York &nbsp;·&nbsp; SWIFT: CITIUS33<br>Account: 60012130007211 &nbsp;·&nbsp; IBAN: 015001213000721182</div>
+          </div>
+        </div>
+        <div class="payee">
+          <div class="pay-num">02</div>
+          <div>
+            <div class="pay-name">Dardas and Associates Texas IOLTA Trust</div>
+            <div class="pay-details">Bank of America &nbsp;·&nbsp; ABA: 026009593<br>Account: 488074643293</div>
+          </div>
+        </div>
+        <div class="payee">
+          <div class="pay-num">03</div>
+          <div>
+            <div class="pay-name">Equisource Group LLC</div>
+            <div class="pay-details">Bank of America &nbsp;·&nbsp; ABA: 051000017 &nbsp;·&nbsp; SWIFT: BOFAUS3N<br>Account: 4350 6315 7167</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-label" style="margin:2rem 0 1rem" data-en="Deployed Contract Infrastructure" data-pt="Infraestrutura de Contratos Implantados">Deployed Contract Infrastructure</div>
+      <div class="addresses">
+        <div class="addr-row">
+          <span class="addr-label" data-en="Electronic Trust Registry" data-pt="Registro Eletrônico de Confiança">Electronic Trust Registry</span>
+          <span class="addr-value">0xCC8598B02BB753b0A557811a99622b33C73692cF</span>
+        </div>
+        <div class="addr-row">
+          <span class="addr-label" data-en="Settlement Proxy" data-pt="Proxy de Liquidação">Settlement Proxy</span>
+          <span class="addr-value">0x16ddD72514e05603c6c044513E382Dd4DCD42d71</span>
+        </div>
+        <div class="addr-row">
+          <span class="addr-label" data-en="Article 12 Forced Transfer" data-pt="Transferência Forçada — Artigo 12">Article 12 Forced Transfer</span>
+          <span class="addr-value">0x332daD374FBc2d8419444363cdbF5f0140907bB7</span>
+        </div>
+        <div class="addr-row">
+          <span class="addr-label" data-en="Custody Account" data-pt="Conta de Custódia">Custody Account</span>
+          <span class="addr-value">0xA170dE937DC784422369e58e2e64E232c326a218</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="gold-div"><div class="gold-div-line"></div></div>
+
+<!-- ─────────────────────────────────────────── SECTION III — SOVEREIGN ENTITY -->
+<section id="s3">
+<div class="section-wrap">
+  <div class="section-inner">
+    <div>
+      <div class="sec-level">III</div>
+      <div class="sec-label" data-en="Level Three Recipient" data-pt="Destinatário de Nível Três">Level Three Recipient</div>
+      <div class="sec-recipient" data-en="Sovereign Entity" data-pt="Entidade Soberana">Sovereign Entity</div>
+      <div class="sec-type" data-en="Highest Register — Sovereign Wealth" data-pt="Mais Alto Registro — Patrimônio Soberano">Highest Register — Sovereign Wealth</div>
+    </div>
+    <div>
+      <h2 class="sec-heading" data-en="What This Framework Means for Brazil" data-pt="O Que Esta Estrutura Representa Para o Brasil">What This Framework Means for Brazil</h2>
+      <p class="sec-lead" data-en="This communication is presented at sovereign register. The FLAME Protocol represents infrastructure that Brazil does not currently have access to through any other mechanism — Federal Reserve correspondent access through an Article 12 perfected Controllable Electronic Record framework, with same-day Fedwire finality and institutional-grade Fireblocks custody. Sovereign-to-sovereign standing is the prerequisite." data-pt="Esta comunicação é apresentada em registro soberano. O FLAME Protocol representa uma infraestrutura à qual o Brasil ainda não tem acesso por nenhum outro mecanismo — acesso correspondente ao Federal Reserve por meio de uma estrutura de Registro Eletrônico Controlável perfeiçoada nos termos do Artigo 12, com finalidade Fedwire no mesmo dia e custódia institucional Fireblocks. A legitimidade soberana para soberana é o pré-requisito.">This communication is presented at sovereign register. The FLAME Protocol represents infrastructure that Brazil does not currently have access to through any other mechanism — Federal Reserve correspondent access through an Article 12 perfected Controllable Electronic Record framework, with same-day Fedwire finality and institutional-grade Fireblocks custody. Sovereign-to-sovereign standing is the prerequisite.</p>
+
+      <div class="stats-grid">
+        <div class="stat-block">
+          <div class="stat-num">25T</div>
+          <div class="stat-label" data-en="USD Allocated to Brazilian Counterparties" data-pt="USD Alocados a Contrapartes Brasileiras">USD Allocated to Brazilian Counterparties</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">10B</div>
+          <div class="stat-label" data-en="Commodity Units — Article 12 Perfected" data-pt="Unidades de Commodity — Artigo 12 Perfeiçoado">Commodity Units — Article 12 Perfected</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">5</div>
+          <div class="stat-label" data-en="Fireblocks Vaults — Three Valuation Frameworks" data-pt="Cofres Fireblocks — Três Estruturas de Valoração">Fireblocks Vaults — Three Valuation Frameworks</div>
+        </div>
+      </div>
+
+      <div class="points">
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Infrastructure Brazil Does Not Currently Have" data-pt="Infraestrutura que o Brasil Não Possui Atualmente">Infrastructure Brazil Does Not Currently Have</div>
+            <p class="pt-text" data-en="Federal Reserve correspondent access through an Article 12 perfected Controllable Electronic Record. This category of settlement infrastructure has not previously been available to sovereign counterparties through a digital asset mechanism. FLAME Protocol is the framework that opens that access — and the access already exists. The rails have already run." data-pt="Acesso correspondente ao Federal Reserve por meio de um Registro Eletrônico Controlável perfeiçoado pelo Artigo 12. Esta categoria de infraestrutura de liquidação não estava anteriormente disponível para contrapartes soberanas por meio de um mecanismo de ativo digital. O FLAME Protocol é a estrutura que abre esse acesso — e o acesso já existe. Os trilhos já foram operados.">Federal Reserve correspondent access through an Article 12 perfected Controllable Electronic Record. This category of settlement infrastructure has not previously been available to sovereign counterparties through a digital asset mechanism. FLAME Protocol is the framework that opens that access — and the access already exists. The rails have already run.</p>
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Sovereign-to-Sovereign Standing" data-pt="Legitimidade Soberana para Soberana">Sovereign-to-Sovereign Standing</div>
+            <p class="pt-text" data-en="This transaction cannot be entered in an individual or purely commercial capacity — the standing must match the register. The Treaty framework establishes the sovereign standing required. Brazil's participation in this framework is therefore at the level appropriate to a sovereign wealth counterparty, not a commercial participant." data-pt="Esta transação não pode ser realizada em capacidade individual ou puramente comercial — a legitimidade deve corresponder ao registro. O arcabouço do Tratado estabelece a legitimidade soberana necessária. A participação do Brasil nesta estrutura é, portanto, no nível apropriado a uma contraparte de patrimônio soberano, não a um participante comercial.">This transaction cannot be entered in an individual or purely commercial capacity — the standing must match the register. The Treaty framework establishes the sovereign standing required. Brazil's participation in this framework is therefore at the level appropriate to a sovereign wealth counterparty, not a commercial participant.</p>
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Settlement Finality — No Counterparty Risk" data-pt="Finalidade da Liquidação — Sem Risco de Contraparte">Settlement Finality — No Counterparty Risk</div>
+            <p class="pt-text" data-en="Fedwire-final. No clearing delay. No counterparty risk beyond Fedwire completion. The Federal Reserve itself is the final guarantor of settlement. Fireblocks institutional custody bridges the Flame Vault Ledger to the Federal Reserve correspondent rail — the same infrastructure used by BNY Mellon and Braza Bank today." data-pt="Finalidade Fedwire. Sem demora de compensação. Sem risco de contraparte além da conclusão pelo Fedwire. O próprio Federal Reserve é o garantidor final da liquidação. A custódia institucional Fireblocks conecta o Flame Vault Ledger ao trilho correspondente do Federal Reserve — a mesma infraestrutura utilizada pelo BNY Mellon e pelo Braza Bank hoje.">Fedwire-final. No clearing delay. No counterparty risk beyond Fedwire completion. The Federal Reserve itself is the final guarantor of settlement. Fireblocks institutional custody bridges the Flame Vault Ledger to the Federal Reserve correspondent rail — the same infrastructure used by BNY Mellon and Braza Bank today.</p>
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Beneficial Owner and Principal Entities" data-pt="Proprietário Beneficiário e Entidades Principais">Beneficial Owner and Principal Entities</div>
+            <p class="pt-text" data-en="<strong>GB Dynamics Inc.</strong> — Jonathan Granger, Chief Executive Officer — Beneficial Owner of Ten Billion Settlement Units. Settlement Ledger Operator: <strong>Equisource Group LLC</strong>. Custodian: <strong>Black Pearl Investments I, LLC</strong> (Christopher McGregor) via Fireblocks Vault. Remaining balance held by Lead Bank." data-pt="<strong>GB Dynamics Inc.</strong> — Jonathan Granger, Diretor Executivo — Proprietário Beneficiário de Dez Bilhões de Unidades de Liquidação. Operador do Livro-Razão de Liquidação: <strong>Equisource Group LLC</strong>. Custodiante: <strong>Black Pearl Investments I, LLC</strong> (Christopher McGregor) via Fireblocks Vault. Saldo remanescente mantido pelo Banco Líder."><strong>GB Dynamics Inc.</strong> — Jonathan Granger, Chief Executive Officer — Beneficial Owner of Ten Billion Settlement Units. Settlement Ledger Operator: <strong>Equisource Group LLC</strong>. Custodian: <strong>Black Pearl Investments I, LLC</strong> (Christopher McGregor) via Fireblocks Vault. Remaining balance held by Lead Bank.</p>
+          </div>
+        </div>
+
+        <div class="point">
+          <div class="pt-bar"></div>
+          <div>
+            <div class="pt-label" data-en="Multi-Vault Architecture — Three Valuation Frameworks" data-pt="Arquitetura Multi-Cofre — Três Estruturas de Valoração">Multi-Vault Architecture — Three Valuation Frameworks</div>
+            <p class="pt-text" data-en="Five vaults operating under three distinct valuation frameworks within the Fireblocks institutional custody infrastructure. Each vault is independently risk-segmented. The multi-vault structure provides redundant valuation attestation and independent risk isolation across the full Twenty-Five Trillion allocation." data-pt="Cinco cofres operando sob três estruturas de valoração distintas dentro da infraestrutura de custódia institucional Fireblocks. Cada cofre é segmentado de risco de forma independente. A estrutura multi-cofre fornece atestação de valoração redundante e isolamento de risco independente em toda a alocação de Vinte e Cinco Trilhões.">Five vaults operating under three distinct valuation frameworks within the Fireblocks institutional custody infrastructure. Each vault is independently risk-segmented. The multi-vault structure provides redundant valuation attestation and independent risk isolation across the full Twenty-Five Trillion allocation.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ─────────────────────────────────────────── COMMON EXHIBIT -->
+<section id="exhibit" class="exhibit-bg">
+<div class="exhibit-inner">
+  <div class="exhibit-h" data-en="Common Exhibit — Registered Identifiers" data-pt="Anexo Comum — Identificadores Registrados">Common Exhibit — Registered Identifiers</div>
+  <p class="exhibit-sub" data-en="Presented to all three levels of recipient as the authoritative record" data-pt="Apresentado aos três níveis de destinatários como o registro autoritativo">Presented to all three levels of recipient as the authoritative record</p>
+  <div class="id-grid">
+    <div class="id-cell"><div class="id-label">CUSIP</div><div class="id-value">85453P206</div></div>
+    <div class="id-cell"><div class="id-label">ISIN</div><div class="id-value">US85453P2060</div></div>
+    <div class="id-cell"><div class="id-label" data-en="Copyright — Primary" data-pt="Direito Autoral — Principal">Copyright — Primary</div><div class="id-value">TXu 2-207-707</div></div>
+    <div class="id-cell"><div class="id-label" data-en="Copyright — Secondary" data-pt="Direito Autoral — Secundário">Copyright — Secondary</div><div class="id-value">TXu 2-347-364</div></div>
+    <div class="id-cell"><div class="id-label" data-en="Florida Apostille" data-pt="Apostila da Flórida">Florida Apostille</div><div class="id-value">No. 2014-148134</div></div>
+    <div class="id-cell"><div class="id-label">CBP Recordation</div><div class="id-value">COP 23-00067</div></div>
+    <div class="id-cell"><div class="id-label">CIK</div><div class="id-value">0001750462</div></div>
+    <div class="id-cell"><div class="id-label" data-en="Book Entry / Account" data-pt="Livro de Registro / Conta">Book Entry / Account</div><div class="id-value">3002 / 1124-911</div></div>
+    <div class="id-cell"><div class="id-label" data-en="ETR Genesis Block" data-pt="Bloco Gênese do ETR">ETR Genesis Block</div><div class="id-value">23,878,199</div></div>
+    <div class="id-cell"><div class="id-label" data-en="ETR Deployment Date" data-pt="Data de Implantação do ETR">ETR Deployment Date</div><div class="id-value">October 15, 2025</div></div>
+    <div class="id-cell full"><div class="id-label">IPFS Anchor</div><div class="id-value">bafybeibdljnfqwvylqsgn457tu3btom6sngs5whe63uelelpzrciby2dwe</div></div>
+    <div class="id-cell full"><div class="id-label" data-en="Electronic Trust Registry" data-pt="Registro Eletrônico de Confiança">Electronic Trust Registry</div><div class="id-value">0xCC8598B02BB753b0A557811a99622b33C73692cF</div></div>
+    <div class="id-cell full"><div class="id-label" data-en="Settlement Proxy" data-pt="Proxy de Liquidação">Settlement Proxy</div><div class="id-value">0x16ddD72514e05603c6c044513E382Dd4DCD42d71</div></div>
+    <div class="id-cell full"><div class="id-label" data-en="Article 12 Forced Transfer" data-pt="Transferência Forçada — Artigo 12">Article 12 Forced Transfer</div><div class="id-value">0x332daD374FBc2d8419444363cdbF5f0140907bB7</div></div>
+    <div class="id-cell full"><div class="id-label" data-en="Custody Account" data-pt="Conta de Custódia">Custody Account</div><div class="id-value">0xA170dE937DC784422369e58e2e64E232c326a218</div></div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="foot-ents">
+    Equisource Group LLC &nbsp;·&nbsp; <span data-en="Settlement Ledger Operator" data-pt="Operador do Livro-Razão de Liquidação">Settlement Ledger Operator</span><br>
+    GB Dynamics Inc. &nbsp;·&nbsp; <span data-en="Beneficial Owner" data-pt="Proprietário Beneficiário">Beneficial Owner</span><br>
+    Thoroughbred LLC &nbsp;·&nbsp; <span data-en="Issuer and DRS Registrant" data-pt="Emitente e Registrante DRS">Issuer and DRS Registrant</span>
+  </p>
+  <div class="foot-line"></div>
+  <p class="foot-note" data-en="This document is presented at sovereign register. All settlement operations are governed by Wyoming Statutes §§34-29-101 through 34-29-105. CUSIP 85453P206 · ISIN US85453P2060." data-pt="Este documento é apresentado em registro soberano. Todas as operações de liquidação são regidas pelos Estatutos de Wyoming §§34-29-101 a 34-29-105. CUSIP 85453P206 · ISIN US85453P2060.">This document is presented at sovereign register. All settlement operations are governed by Wyoming Statutes §§34-29-101 through 34-29-105. CUSIP 85453P206 · ISIN US85453P2060.</p>
+</footer>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll('[data-en][data-pt]').forEach(function(el){
+    el.innerHTML = el.getAttribute('data-'+lang);
+  });
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.getElementById('btn-pt').classList.toggle('active', lang==='pt');
+  document.documentElement.lang = lang;
+  document.title = lang==='pt'
+    ? 'FLAME Protocol — Estrutura de Liquidação Soberana'
+    : 'FLAME Protocol — Sovereign Settlement Framework';
+}
+setLang('en');
+</script>
+</body>
+</html>
